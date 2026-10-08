@@ -12,7 +12,7 @@ Scenario/Evidence → IOC Extraction → VirusTotal Investigation → Reputation
 \
 I will not assume that a VirusTotal detection automatically means malicious activity. The important SOC skill is interpreting the enrichment data in context.
 
-Step 1 — Investigation Scenario
+### Step 1 — Investigation Scenario
 
 A Tier-1 SOC analyst receives an alert involving a suspicious URL and a downloaded file. The alert contains the following artifacts:
 
@@ -28,7 +28,7 @@ Filename: eicar.com
 SHA-256:\
 275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f
 
-Observed Activity: bSecurity monitoring detected a suspicious file on WS-104.
+Observed Activity: Security monitoring detected a suspicious file on WS-104.
 
 Additional Evidence:\
 No execution evidence available.\
@@ -43,22 +43,11 @@ URL: https://secure.eicar.org/eicar.com\
 Filename: eicar.com\
 SHA-256 hash: 275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f
 
-Step 2 — URL Reputation Investigation
+### Step 2 — URL Reputation Investigation
 
 I open [<u>VirusTotal</u>](https://www.virustotal.com/?utm_source=chatgpt.com) and I select search, then I submit SHA-256 hash. (Images 1 through 5)
 
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
-Step 3 — Reputation Analysis and Analyst Validation
----------------------------------------------------
+### Step 3 — Reputation Analysis and Analyst Validation
 
 Interpreting VirusTotal results without treating detection count alone as proof of malware.
 
@@ -106,10 +95,9 @@ Analyst Validation:
 
 . No evidence currently supports malware execution, persistence, command-and-control activity, or additional malicious behavior.
 
-So, SOC skill demonstrated: IOC enrichment requires context + reputation data + analyst validation, not detection-count interpretation alone.\
-\
-Step 4 — URL Reputation Investigation
-----------------------------------------------------------------------------------------------------------------------------------------------
+So, SOC skill demonstrated: IOC enrichment requires context + reputation data + analyst validation, not detection-count interpretation alone.
+
+### Step 4 — URL Reputation Investigation
 
 Enrich a URL IOC and compare URL reputation with file-hash reputation.
 
@@ -132,12 +120,11 @@ Gridinsoft: Suspicious
 
 HTTP Status: 200\
 Community Score: 84\
-\
+
 Most remaining vendors show Clean or Unrated.
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\
-Analyst Validation:\
-\
+### Analyst Validation:
+
 . The URL reputation search produced detections from 9 of 90 security vendors.
 
 . Several vendors classified the URL as malicious, malware, or suspicious. Most vendors classified the URL as clean or provided no rating.
@@ -148,23 +135,9 @@ Analyst Validation:\
 
 . The 9/90 detection ratio alone does not establish genuine malicious activity.
 
-. File-hash enrichment and URL enrichment support identification of an antivirus test artifact rather than confirmed malware. (Images 6 through 10)\
-\
-\
-\
-\
-\
-\
-\
-----------------------------------------------------------------------------------------------------------------------------------------------------
+. File-hash enrichment and URL enrichment support identification of an antivirus test artifact rather than confirmed malware. (Images 6 through 10)
 
-\
-\
-\
-\
-\
-Step 5 — IOC Correlation and Classification
--------------------------------------------
+### Step 5 — IOC Correlation and Classification
 
 Correlate multiple IOC-enrichment results before assigning an alert classification.
 
@@ -207,7 +180,7 @@ Analyst Classification:\
 
 . High file-detection counts reflect intentional antivirus signature detection rather than confirmed malware behavior.
 
-### . Available evidence contains no confirmed malware execution, persistence, command-and-control activity, or additional malicious behavior.\
+. Available evidence contains no confirmed malware execution, persistence, command-and-control activity, or additional malicious behavior.\
 \
 SOC Decision
 
@@ -219,9 +192,7 @@ Additional Action: Document IOC-enrichment results and preserve investigation
 
 evidence.
 
-\
-Step 6 — MITRE ATT&CK Assessment
---------------------------------
+### Step 6 — MITRE ATT&CK Assessment
 
 Determine whether available evidence supports assignment of a MITRE ATT&CK technique.
 
@@ -243,8 +214,6 @@ Observed Evidence:
 
 \- No adversary behavior identified
 
-### \
-\
 MITRE ATT&CK Assessment
 
 MITRE ATT&CK Mapping: Not applicable based on available evidence.
@@ -271,35 +240,34 @@ Analyst Decision: No MITRE ATT&CK technique assigned.
 
 This step demonstrates an important SOC practice: ATT&CK mapping requires behavioral evidence; an IOC or VirusTotal detection count alone does not justify technique assignment.
 
-## Step 7 — SOC Conclusion
+### Step 7 — SOC Conclusion
 
-Documenting a concise final investigation conclusion based on validated IOC-enrichment evidence.\
+Documenting a concise final investigation conclusion based on validated IOC-enrichment evidence.
 \
 Final Investigation Summary and SOC Conclusion:
 
-### . VirusTotal enrichment identified the SHA-256 hash as the EICAR antivirus test file, with 66 of 68 security engines reporting detections.
+. VirusTotal enrichment identified the SHA-256 hash as the EICAR antivirus test file, with 66 of 68 security engines reporting detections.
 
-### . URL enrichment produced 9 detections from 90 security vendors.
+. URL enrichment produced 9 detections from 90 security vendors.
 
-### . Several vendors classified the URL as malicious, malware, or suspicious.
+. Several vendors classified the URL as malicious, malware, or suspicious.
 
-### . Analyst validation confirmed association between both IOCs and the EICAR antivirus-testing environment.
+. Analyst validation confirmed association between both IOCs and the EICAR antivirus-testing environment.
 
-### . No evidence confirmed malware execution, persistence, command-and-control activity, or additional malicious behavior.
+. No evidence confirmed malware execution, persistence, command-and-control activity, or additional malicious behavior.
 
-### 
 
 ### Classification:
 
-### . Benign / Security Test Activity
+. Benign / Security Test Activity
 
-### . Confidence: High
+. Confidence: High
 
-### . MITRE ATT&CK: No technique assigned based on available evidence.
+. MITRE ATT&CK: No technique assigned based on available evidence.
 
-### . Disposition: Close alert as benign security-test activity.
+. Disposition: Close alert as benign security-test activity.
 
-### . Escalation: Not required based on available evidence.
+. Escalation: Not required based on available evidence.
 
 ### SOC Skill Demonstrated
 
